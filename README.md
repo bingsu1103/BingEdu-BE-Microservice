@@ -37,6 +37,14 @@
 
 ---
 
+## UML Service
+
+![alt text](image.png)
+
+## Microservice Architecture
+
+![alt text](image-1.png)
+
 ## 🚀 Hướng dẫn chạy bằng Docker
 
 ### 1. ✅ Yêu cầu:
