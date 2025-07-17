@@ -44,13 +44,22 @@
 - Cài đặt **Docker Desktop**
 - Clone source code về máy
 - Cấu trúc thư mục có dạng:
-  /BingEdu
-  ├── docker-compose.yml
-  ├── user-service/
-  │ ├── Dockerfile
-  │ └── src/index.js
-  ├── auth-service/
-  └── ...
+
+```text
+/BingEdu
+├── docker-compose.yml
+├── user-service/
+│   ├── Dockerfile
+│   └── src/index.js
+├── auth-service/
+├── course-service/
+├── lesson-service/
+├── upload-service/
+├── question-service/
+└── answer-service/
+```
+
+---
 
 ### 2. ▶️ Lệnh chạy:
 
@@ -58,16 +67,19 @@
 docker compose up --build
 ```
 
+---
+
 ### 3. 🌐 Truy cập các service:
 
-Service URL
-User http://localhost:8000
-Auth http://localhost:8001
-Course http://localhost:8002
-Upload http://localhost:8003
-Lesson http://localhost:8004
-Question http://localhost:8005
-Answer http://localhost:8006
+- 🧑‍💻 User: [http://localhost:8000](http://localhost:8000)
+- 🔐 Auth: [http://localhost:8001](http://localhost:8001)
+- 📚 Course: [http://localhost:8002](http://localhost:8002)
+- 🗂 Upload: [http://localhost:8003](http://localhost:8003)
+- 🎓 Lesson: [http://localhost:8004](http://localhost:8004)
+- ❓ Question: [http://localhost:8005](http://localhost:8005)
+- ✅ Answer: [http://localhost:8006](http://localhost:8006)
+
+---
 
 ## 📌 Các lệnh hỗ trợ
 
@@ -77,3 +89,10 @@ Answer http://localhost:8006
 | 🛑 Dừng container  | `docker compose down`             |
 | 📜 Xem logs        | `docker compose logs -f`          |
 | 🔄 Rebuild toàn bộ | `docker compose build --no-cache` |
+
+---
+
+## 📬 Liên hệ
+
+📧 *ngogiaan11111@gmail.com*  
+📍 _TP. Hồ Chí Minh, Việt Nam_
