@@ -2,10 +2,14 @@ const express = require("express");
 const routerAPI = express.Router();
 const answerController = require("../controllers/answer.controller");
 
-routerAPI.post("/answer", answerController.createAnswerAPI);
-routerAPI.post("/answer-multiple", answerController.createMultipleAnswerAPI);
+routerAPI.post("/", answerController.createAnswerAPI);
+routerAPI.post("/multiple", answerController.createMultipleAnswerAPI);
 routerAPI.delete(
-  "/answer-multiple",
+  "/multiple",
+  answerController.deleteMultipleAnswerByLessonIdAPI
+);
+routerAPI.get(
+  "/lesson/:id",
   answerController.deleteMultipleAnswerByLessonIdAPI
 );
 

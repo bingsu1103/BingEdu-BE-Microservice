@@ -127,8 +127,37 @@ const deleteMultipleAnswerByLessonId = async (id) => {
   }
 };
 
+const getAnswersByLessonId = async (id) => {
+  try {
+    const listAnswers = await Answer.find({ lesson_id: id });
+    if (listAnswers.length <= 0) {
+      return {
+        status: false,
+        EC: 1,
+        message: "No result found or invalid result",
+        data: null,
+      };
+    }
+    return {
+      status: true,
+      EC: 0,
+      message: "Get answers by lesson_id successfully!",
+      data: listAnswers,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      status: false,
+      EC: -1,
+      message: error.message || "ERROR FROM SERVER!",
+      data: null,
+    };
+  }
+};
+
 module.exports = {
   createAnswer,
   createMultipleAnswer,
   deleteMultipleAnswerByLessonId,
+  getAnswersByLessonId,
 };

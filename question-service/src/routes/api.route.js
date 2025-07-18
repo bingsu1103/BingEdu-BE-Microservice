@@ -1,13 +1,13 @@
 const express = require("express");
 const routerAPI = express.Router();
-const questionController = require('../controllers/question.controller')
+const questionController = require("../controllers/question.controller");
 
-routerAPI.post("/question", questionController.createQuestionAPI);
-routerAPI.post("/question-multiple", questionController.createMultipleQuestionAPI);
-routerAPI.put("/question", questionController.updateQuestionAPI);
-routerAPI.get("/question/id/:id", questionController.getQuestionAPI);
-routerAPI.get("/question", questionController.getAllQuestionAPI);
-routerAPI.get("/question/lesson/:id", questionController.getQuestionByLessonId);
-routerAPI.delete("/question", questionController.deleteQuestionAPI);
+routerAPI.post("/", questionController.createQuestionAPI);
+routerAPI.post("/multiple", questionController.createMultipleQuestionAPI);
+routerAPI.put("/", questionController.updateQuestionAPI);
+routerAPI.get("/id/:id", questionController.getQuestionAPI);
+routerAPI.get("/", questionController.getAllQuestionAPI);
+routerAPI.get("/lesson/:id", questionController.getQuestionByLessonId);
+routerAPI.delete("/", questionController.deleteQuestionAPI);
 
 module.exports = routerAPI;

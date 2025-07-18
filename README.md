@@ -39,11 +39,11 @@
 
 ## UML Service
 
-![alt text](image.png)
+![alt text](./public/image.png)
 
 ## Microservice Architecture
 
-![alt text](image-1.png)
+![alt text](./public/image-1.png)
 
 ## 🚀 Hướng dẫn chạy bằng Docker
 

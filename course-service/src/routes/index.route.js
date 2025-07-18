@@ -1,7 +1,7 @@
 const apiRoute = require("./api.route");
 
 const initRoute = (app) => {
-    app.use("/v1/api", apiRoute)
-}
+  app.use("/", apiRoute);
+};
 
-module.exports = initRoute
+module.exports = initRoute;

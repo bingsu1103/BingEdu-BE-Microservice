@@ -1,6 +1,6 @@
-const uploadRoute = require("./upload.route")
+const uploadRoute = require("./upload.route");
 
 const initRoute = (app) => {
-    app.use("/v1/api", uploadRoute)
-}
+  app.use("/", uploadRoute);
+};
 module.exports = initRoute;

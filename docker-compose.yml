@@ -3,47 +3,54 @@ services:
     build: ./user-service
     container_name: user-service
     ports:
-      - "8000:3000"
+      - "8000:8000"
     restart: always
 
   auth-service:
     build: ./auth-service
     container_name: auth-service
     ports:
-      - "8001:3000"
+      - "8001:8001"
     restart: always
 
   course-service:
     build: ./course-service
     container_name: course-service
     ports:
-      - "8002:3000"
+      - "8002:8002"
     restart: always
 
   upload-service:
     build: ./upload-service
     container_name: upload-service
     ports:
-      - "8003:3000"
+      - "8003:8003"
     restart: always
 
   lesson-service:
     build: ./lesson-service
     container_name: lesson-service
     ports:
-      - "8004:3000"
+      - "8004:8004"
     restart: always
 
   question-service:
     build: ./question-service
     container_name: question-service
     ports:
-      - "8005:3000"
+      - "8005:8005"
     restart: always
 
   answer-service:
     build: ./answer-service
     container_name: answer-service
     ports:
-      - "8006:3000"
+      - "8006:8006"
+    restart: always
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
     restart: always
