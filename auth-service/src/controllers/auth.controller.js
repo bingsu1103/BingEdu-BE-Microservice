@@ -127,6 +127,8 @@ const logoutAPI = async (req, res) => {
         data: null,
       });
     }
+    res.clearCookie("refresh_token");
+
     return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({
