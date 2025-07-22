@@ -48,6 +48,13 @@ services:
       - "8006:8006"
     restart: always
 
+  review-service:
+    build: ./review-service
+    container_name: review-service
+    ports:
+      - "8007:8007"
+    restart: always
+
   api-gateway:
     build: ./api-gateway
     container_name: api-gateway
