@@ -8,12 +8,13 @@ routerAPI.get("/", userController.getAllUserAPI);
 routerAPI.get("/id/:id", userController.getAUserAPI);
 routerAPI.get("/email/:email", userController.getAUserEmailAPI);
 routerAPI.put("/", userController.updateUserAPI);
-routerAPI.delete("/", userController.deleteUserAPI);
+routerAPI.delete("/id/:id", userController.deleteUserAPI);
 routerAPI.post(
   "/check-password",
   authenticateApiKey,
   userController.isPasswordMatchAPI
 );
 routerAPI.post("/update-password", userController.updatePasswordAPI);
+routerAPI.get("/paginate", userController.getUserWithPaginationAPI);
 
 module.exports = routerAPI;

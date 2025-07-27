@@ -16,6 +16,7 @@ const AuthSchema = new mongoose.Schema({
   },
   otp: String,
   otp_expire: String,
+  verify_token: String,
 });
 const Auth = mongoose.model("Auth", AuthSchema);
 module.exports = Auth;

@@ -11,5 +11,6 @@ router.get("/account", verifyToken, authController.fetchAccountAPI);
 router.post("/forgot_password", authController.forgotPasswordAPI);
 router.post("/verifyOTP", authController.verifyOTPAPI);
 router.post("/reset_password", authController.resetPasswordAPI);
+router.post("/check_permission", authController.checkPermissionAPI);
 
 module.exports = router;

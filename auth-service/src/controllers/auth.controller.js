@@ -234,7 +234,15 @@ const verifyOTPAPI = async (req, res) => {
 };
 const resetPasswordAPI = async (req, res) => {
   try {
-    const { email, newPassword } = req.body;
+    const { email, newPassword, verify_token } = req.body;
+    if (!verify_token) {
+      return res.status(401).json({
+        status: false,
+        EC: 1,
+        message: "Unauthorized",
+        data: null,
+      });
+    }
     if (!email || !newPassword) {
       return res.status(400).json({
         status: false,
@@ -243,7 +251,11 @@ const resetPasswordAPI = async (req, res) => {
         data: null,
       });
     }
-    const result = await authService.resetPassword(email, newPassword);
+    const result = await authService.resetPassword(
+      email,
+      newPassword,
+      verify_token
+    );
     if (!result) {
       return res.status(401).json({
         status: false,
@@ -263,6 +275,32 @@ const resetPasswordAPI = async (req, res) => {
   }
 };
 
+const checkPermissionAPI = async (req, res) => {
+  try {
+    const { verify_token } = req.body;
+    if (!verify_token) {
+      return res.status(401).json({
+        status: false,
+        EC: 1,
+        message: "Unauthorized",
+        data: null,
+      });
+    }
+    const result = await authService.checkPermission(verify_token);
+    if (!result.status) {
+      return res.status(401).json(result);
+    }
+    return res.status(201).json(result);
+  } catch (error) {
+    return res.status(500).json({
+      status: false,
+      EC: -1,
+      message: error.message || "ERROR FROM SERVER!",
+      data: null,
+    });
+  }
+};
+
 module.exports = {
   registerAPI,
   loginAPI,
@@ -272,4 +310,5 @@ module.exports = {
   verifyOTPAPI,
   forgotPasswordAPI,
   resetPasswordAPI,
+  checkPermissionAPI,
 };

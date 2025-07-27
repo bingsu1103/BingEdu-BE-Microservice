@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const axios = require("axios");
 const emailUntil = require("../utils/email.util");
 const Auth = require("../models/auth");
+const { v4: uuidv4 } = require("uuid");
 
 const generateToken = (userId) => {
   return jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: "1h" });
@@ -61,6 +62,7 @@ const login = async (email, password) => {
       return {
         status: false,
         EC: -1,
+        message: "ERROR login",
         data: null,
       };
     }
@@ -84,7 +86,7 @@ const login = async (email, password) => {
       EC: 0,
       message: "Login successfully!",
       data: {
-        user: dataRes,
+        user: dataRes.data,
         refresh_token: refresh_token,
         access_token: access_token,
       },
@@ -149,7 +151,9 @@ const logout = async (id) => {
       status: true,
       EC: 0,
       message: "Log out successfully!",
-      data: id,
+      data: {
+        userID: id,
+      },
     };
   } catch (error) {
     console.log(error);
@@ -164,7 +168,7 @@ const logout = async (id) => {
 
 const fetchAccount = async (id) => {
   try {
-    const user = await Auth.find({ user_id: id });
+    const user = await Auth.findOne({ user_id: id });
     return {
       status: true,
       EC: 0,
@@ -271,11 +275,16 @@ const verifyOTP = async (email, otp) => {
         data: null,
       };
     }
+    const verify_token = uuidv4();
+    authRes.verify_token = verify_token;
+    await authRes.save();
     return {
       status: true,
       EC: 0,
       message: "Verify OTP successfully",
-      data: null,
+      data: {
+        verify_token: authRes.verify_token,
+      },
     };
   } catch (error) {
     console.log(error);
@@ -288,8 +297,17 @@ const verifyOTP = async (email, otp) => {
   }
 };
 
-const resetPassword = async (email, newPassword) => {
+const resetPassword = async (email, newPassword, verify_token) => {
   try {
+    const authRes = await Auth.findOne({ verify_token: verify_token });
+    if (!authRes) {
+      return {
+        status: false,
+        EC: 1,
+        message: "Unauthorized",
+        data: null,
+      };
+    }
     const url = `${process.env.USER_SERVICE_URL}/update-password`;
     const data = { email, newPassword };
     const dataRes = await axios.post(url, data);
@@ -304,18 +322,11 @@ const resetPassword = async (email, newPassword) => {
         data: null,
       };
     }
-    const authRes = await Auth.findOneAndUpdate(
-      { user_id: dataRes.data.data },
-      { $set: { otp: undefined, otp_expire: undefined } }
-    );
-    if (!authRes) {
-      return {
-        status: false,
-        EC: 1,
-        message: "Update otp and otp_expire failed",
-        data: null,
-      };
-    }
+    authRes.otp = undefined;
+    authRes.otp_expire = undefined;
+    authRes.verify_token = undefined;
+    await authRes.save();
+
     return {
       status: true,
       EC: 0,
@@ -332,6 +343,33 @@ const resetPassword = async (email, newPassword) => {
     };
   }
 };
+const checkPermission = async (verify_token) => {
+  try {
+    const authRes = await Auth.findOne({ verify_token: verify_token });
+    if (!authRes) {
+      return {
+        status: false,
+        EC: 1,
+        message: "Unauthorized or expired token",
+        data: null,
+      };
+    }
+    return {
+      status: true,
+      EC: 0,
+      message: "Authorized",
+      data: null,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      status: false,
+      EC: -1,
+      message: error.message || "ERROR FROM SERVER!",
+      data: null,
+    };
+  }
+};
 module.exports = {
   register,
   login,
@@ -341,4 +379,5 @@ module.exports = {
   fetchAccount,
   verifyOTP,
   resetPassword,
+  checkPermission,
 };
