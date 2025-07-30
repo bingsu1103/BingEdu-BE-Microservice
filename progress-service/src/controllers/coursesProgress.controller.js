@@ -73,3 +73,8 @@ const getCoursesProgressAPI = async (req, res) => {
     });
   }
 };
+module.exports = {
+  createCourseProgressAPI,
+  getCoursesProgressAPI,
+  updateCourseProgressAPI,
+};
