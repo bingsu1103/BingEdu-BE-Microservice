@@ -135,6 +135,36 @@ const getAllLesson = async () => {
     };
   }
 };
+
+const getLessonByCourseId = async (id) => {
+  try {
+    const url = `${process.env.COURSES_SERVICE_URL}/${id}`;
+    const courses = await axios.get(url);
+    if (!courses.data.status) {
+      return {
+        status: false,
+        EC: 1,
+        message: "Courses not found in system",
+        data: null,
+      };
+    }
+    const listLesson = await Lesson.find({ "courses.id": id });
+    return {
+      status: true,
+      EC: 0,
+      message: "Get lesson by courses id successfully!",
+      data: listLesson,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      status: false,
+      EC: -1,
+      message: error.message || "ERROR FROM SERVER!",
+      data: null,
+    };
+  }
+};
 const deleteLesson = async (id) => {
   try {
     const lesson = await Lesson.deleteOne({ _id: id });
@@ -167,5 +197,6 @@ module.exports = {
   updateLesson,
   getLesson,
   getAllLesson,
+  getLessonByCourseId,
   deleteLesson,
 };

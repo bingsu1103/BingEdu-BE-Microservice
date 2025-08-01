@@ -82,6 +82,32 @@ const getAllLessonAPI = async (req, res) => {
   }
 };
 
+const getLessonByCourseIdAPI = async (req, res) => {
+  try {
+    const { id } = req.body.id;
+    if (!id) {
+      return res.status(400).json({
+        status: false,
+        EC: 1,
+        message: "Missing courses ID",
+        data: null,
+      });
+    }
+    const res = await lessonService.getLessonByCourseId(id);
+    if (!res.status) {
+      return res.status(500).json(res);
+    }
+    return res.status(200).json(res);
+  } catch (error) {
+    return res.status(500).json({
+      status: false,
+      EC: -1,
+      message: error.message || "ERROR FROM SERVER!",
+      data: null,
+    });
+  }
+};
+
 const deleteLessonAPI = async (req, res) => {
   try {
     const { id } = req.params;
@@ -111,4 +137,5 @@ module.exports = {
   deleteLessonAPI,
   getLessonAPI,
   getAllLessonAPI,
+  getLessonByCourseIdAPI,
 };

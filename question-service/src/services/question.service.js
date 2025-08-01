@@ -191,7 +191,7 @@ const getQuestionByLessonId = async (id) => {
   try {
     const url = `${process.env.LESSON_SERVICE_URL}/id/${id}`;
     const lesson = await axios.get(url);
-    if (!lesson) {
+    if (!lesson.data.status) {
       return {
         status: false,
         EC: 1,
