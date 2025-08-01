@@ -25,7 +25,7 @@ const createReviewAPI = async (req, res) => {
     return res.status(500).json({
       status: false,
       EC: -1,
-      message: error.message || "ERROR FROM SERVER!",
+      message: "ERROR FROM SERVER!",
       data: null,
     });
   }
@@ -98,12 +98,12 @@ const getReviewAPI = async (req, res) => {
     const id = req.params.id;
     const result = await reviewService.getReview(id);
     if (!result.status) {
-      return {
+      return res.status(400).json({
         status: false,
         EC: 1,
         message: result.message,
         data: null,
-      };
+      });
     }
     return res.status(200).json(result);
   } catch (error) {

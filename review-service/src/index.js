@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 8007;
 const connection = require("./configs/DB.config");
-const initRoute = require("./routes/init.route");
+const initRoute = require("./routes/index.route");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

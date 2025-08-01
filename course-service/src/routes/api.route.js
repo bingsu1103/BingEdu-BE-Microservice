@@ -6,6 +6,6 @@ routerAPI.post("/", courseController.createCourseAPI);
 routerAPI.put("/", courseController.updateCourseAPI);
 routerAPI.get("/id/:id", courseController.getCourseAPI);
 routerAPI.get("/multiple", courseController.getAllCoursesAPI);
-routerAPI.delete("/", courseController.deleteCourseAPI);
+routerAPI.delete("/id/:id", courseController.deleteCourseAPI);
 
 module.exports = routerAPI;

@@ -29,9 +29,12 @@ const createCourseProgress = async (data) => {
   }
 };
 
-const updateCourseProgress = async (userId, lessonId) => {
+const updateCourseProgress = async (userId, lessonId, coursesId) => {
   try {
-    const courses = await CoursesProgress.findOne({ userId: userId });
+    const courses = await CoursesProgress.findOne({
+      userId: userId,
+      coursesId: coursesId,
+    });
     if (courses.completed) {
       return {
         status: false,
@@ -40,13 +43,13 @@ const updateCourseProgress = async (userId, lessonId) => {
         data: null,
       };
     }
-    courses.push(lessonId);
+    courses.lessonsIdComplete.push(lessonId);
     await courses.save();
     const listCoursesRes = await axios.get(
       `${process.env.COURSES_SERVICE_URL}/multiple`
     );
     const listCoursesLength = listCoursesRes.data.data.length;
-    if (courses.length === listCoursesLength) {
+    if (courses.lessonsIdComplete.length === listCoursesLength) {
       courses.completed = true;
       await courses.save();
     }
@@ -67,10 +70,13 @@ const updateCourseProgress = async (userId, lessonId) => {
   }
 };
 
-const getCoursesProgress = async (coursesId) => {
+const getCoursesProgress = async (coursesId, userId) => {
   try {
-    const coursesProgress = await CoursesProgress.findById(id);
-    if (!courses) {
+    const coursesProgress = await CoursesProgress.findOne({
+      coursesId: coursesId,
+      userId: userId,
+    });
+    if (!coursesProgress) {
       return {
         status: false,
         EC: 1,

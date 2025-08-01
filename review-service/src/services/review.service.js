@@ -26,7 +26,7 @@ const createReview = async (review) => {
       status: true,
       EC: 0,
       message: "Create review successfully!",
-      data: review,
+      data: { ...review, rating: Number(review.rating) },
     };
   } catch (error) {
     console.log(error);

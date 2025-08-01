@@ -25,9 +25,11 @@ const createCourseProgressAPI = async (req, res) => {
 };
 const updateCourseProgressAPI = async (req, res) => {
   try {
-    const data = req.body;
+    const { userId, lessonId, coursesId } = req.body;
     const coursesProgress = await coursesProgressService.updateCourseProgress(
-      data
+      userId,
+      lessonId,
+      coursesId
     );
     if (!coursesProgress.status) {
       return res.status(400).json({
@@ -49,16 +51,18 @@ const updateCourseProgressAPI = async (req, res) => {
 };
 const getCoursesProgressAPI = async (req, res) => {
   try {
-    if (!req.body.coursesId) {
+    const { userId, coursesId } = req.body;
+    if (!coursesId || !userId) {
       return res.status(400).json({
         status: false,
         EC: 1,
-        message: "Missing coursesId",
+        message: "Missing coursesId || userId",
         data: null,
       });
     }
     const courseProgress = await coursesProgressService.getCoursesProgress(
-      req.body.coursesId
+      coursesId,
+      userId
     );
     if (!courseProgress.status) {
       return res.status(500).json(courseProgress);

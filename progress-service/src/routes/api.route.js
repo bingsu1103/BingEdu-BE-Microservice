@@ -7,6 +7,9 @@ routerAPI.post("/courses", courseProgressController.createCourseProgressAPI);
 routerAPI.put("/courses", courseProgressController.updateCourseProgressAPI);
 routerAPI.get("/courses", courseProgressController.getCoursesProgressAPI);
 routerAPI.post("/lessons", lessonProgressController.createLessonProgressAPI);
-routerAPI.get("/lessons", lessonProgressController.getLessonProgressAPI);
+routerAPI.get(
+  "/lessons/userId/:userId/lessonId/:lessonId",
+  lessonProgressController.getLessonProgressAPI
+);
 
 module.exports = routerAPI;

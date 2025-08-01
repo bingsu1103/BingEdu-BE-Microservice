@@ -8,7 +8,7 @@ router.use(
   createProxyMiddleware({
     target: "http://lesson-service:8004",
     changeOrigin: true,
-    pathRewrite: { "^/v1/api/lessons": "" },
+    pathRewrite: { "^/v1/api/lesson": "" },
   })
 );
 

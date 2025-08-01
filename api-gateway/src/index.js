@@ -8,6 +8,7 @@ const questionRoutes = require("./routes/question");
 const answerRoutes = require("./routes/answer");
 const uploadRoutes = require("./routes/upload");
 const reviewRoutes = require("./routes/review");
+const progressRoutes = require("./routes/progress");
 const errorHandler = require("./middlewares/errorHandler");
 const cors = require("cors");
 
@@ -42,6 +43,7 @@ app.use("/v1/api/question", questionRoutes);
 app.use("/v1/api/answer", answerRoutes);
 app.use("/v1/api/upload", uploadRoutes);
 app.use("/v1/api/review", reviewRoutes);
+app.use("/v1/api/progress", progressRoutes);
 
 app.use(errorHandler);
 

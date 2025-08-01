@@ -1,4 +1,4 @@
-const routerAPI = require("./api.route/");
+const routerAPI = require("../routes/api.route");
 
 const initRoute = (app) => {
   app.use("/", routerAPI);

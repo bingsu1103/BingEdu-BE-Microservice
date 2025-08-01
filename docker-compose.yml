@@ -55,6 +55,13 @@ services:
       - "8007:8007"
     restart: always
 
+  progress-service:
+    build: ./progress-service
+    container_name: progress-service
+    ports:
+      - "8008:8008"
+    restart: always
+
   api-gateway:
     build: ./api-gateway
     container_name: api-gateway
