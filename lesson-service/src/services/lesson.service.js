@@ -138,7 +138,7 @@ const getAllLesson = async () => {
 
 const getLessonByCourseId = async (id) => {
   try {
-    const url = `${process.env.COURSES_SERVICE_URL}/${id}`;
+    const url = `${process.env.COURSES_SERVICE_URL}/id/${id}`;
     const courses = await axios.get(url);
     if (!courses.data.status) {
       return {

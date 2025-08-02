@@ -84,7 +84,7 @@ const getAllLessonAPI = async (req, res) => {
 
 const getLessonByCourseIdAPI = async (req, res) => {
   try {
-    const { id } = req.body.id;
+    const { id } = req.params;
     if (!id) {
       return res.status(400).json({
         status: false,
@@ -93,11 +93,11 @@ const getLessonByCourseIdAPI = async (req, res) => {
         data: null,
       });
     }
-    const res = await lessonService.getLessonByCourseId(id);
-    if (!res.status) {
-      return res.status(500).json(res);
+    const result = await lessonService.getLessonByCourseId(id);
+    if (!result.status) {
+      return res.status(500).json(result);
     }
-    return res.status(200).json(res);
+    return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({
       status: false,

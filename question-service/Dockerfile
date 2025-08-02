@@ -1,5 +1,7 @@
 # Sử dụng image Node.js chính thức
-FROM node:18
+FROM node:20.17.0
+
+RUN npm install -g npm@latest
 
 # Tạo thư mục ứng dụng trong container
 WORKDIR /app
