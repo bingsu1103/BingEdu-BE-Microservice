@@ -8,6 +8,6 @@ routerAPI.put("/", questionController.updateQuestionAPI);
 routerAPI.get("/id/:id", questionController.getQuestionAPI);
 routerAPI.get("/", questionController.getAllQuestionAPI);
 routerAPI.get("/lesson/:id", questionController.getQuestionByLessonId);
-routerAPI.delete("/", questionController.deleteQuestionAPI);
+routerAPI.delete("/id/:id", questionController.deleteQuestionAPI);
 
 module.exports = routerAPI;

@@ -78,7 +78,7 @@ const refreshAccessTokenAPI = async (req, res) => {
       return res.status(400).json({
         status: false,
         EC: 1,
-        message: "Missing refresh token",
+        message: `Missing refresh token${refreshToken}`,
         data: null,
       });
     }
