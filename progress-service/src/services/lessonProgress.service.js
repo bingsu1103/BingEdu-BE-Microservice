@@ -1,6 +1,18 @@
 const LessonProgress = require("../models/lessonProgress");
 const createLessonProgress = async (data) => {
   try {
+    const isValid = await LessonProgress.findOne({
+      userId: data.userId,
+      lessonId: data.lessonId,
+    });
+    if (isValid) {
+      return {
+        status: false,
+        EC: 1,
+        message: "Lesson already completed!",
+        data: null,
+      };
+    }
     const newData = { ...data, completed: true };
     const lessonProgress = await LessonProgress.create(newData);
     if (!lessonProgress) {

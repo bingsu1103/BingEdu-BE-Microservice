@@ -32,12 +32,7 @@ const createMultipleAnswerAPI = async (req, res) => {
         data: null,
       });
     }
-    return res.status(200).json({
-      status: true,
-      EC: 0,
-      message: "Create multiple answer successfully!",
-      data: result,
-    });
+    return res.status(200).json(result);
   } catch (error) {
     console.log(error);
     return res.status(500).json({
@@ -50,7 +45,7 @@ const createMultipleAnswerAPI = async (req, res) => {
 };
 const deleteMultipleAnswerByLessonIdAPI = async (req, res) => {
   try {
-    const id = req.body.id;
+    const id = req.params.id;
     if (!id) {
       return res.status(400).json({
         status: false,
@@ -82,6 +77,7 @@ const deleteMultipleAnswerByLessonIdAPI = async (req, res) => {
 const getAnswersByLessonIdAPI = async (req, res) => {
   try {
     const id = req.params.id;
+    const userId = req.params.userId;
     if (!id) {
       return res.status(400).json({
         status: false,
@@ -90,7 +86,7 @@ const getAnswersByLessonIdAPI = async (req, res) => {
         data: null,
       });
     }
-    const result = await answerService.getAnswersByLessonId(id);
+    const result = await answerService.getAnswersByLessonId(id, userId);
     if (!result.status) {
       return res.status(500).json({
         status: false,

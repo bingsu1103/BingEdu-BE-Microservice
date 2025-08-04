@@ -9,8 +9,8 @@ routerAPI.delete(
   answerController.deleteMultipleAnswerByLessonIdAPI
 );
 routerAPI.get(
-  "/lesson/:id",
-  answerController.deleteMultipleAnswerByLessonIdAPI
+  "/lesson/:id/user/:userId",
+  answerController.getAnswersByLessonIdAPI
 );
 
 module.exports = routerAPI;

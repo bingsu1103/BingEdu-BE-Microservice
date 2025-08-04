@@ -69,7 +69,10 @@ const validateMultipleAnswer = async (listAnswers) => {
     };
   }
 
-  const setLessons = new Set(listAnswers.map((l) => l.lesson_id));
+  const validLessons = listAnswers
+    .map((l) => l.lesson_id)
+    .filter((id) => id !== undefined && id !== null);
+  const setLessons = new Set(validLessons);
 
   if (setLessons.size !== 1) {
     return {
@@ -119,7 +122,12 @@ const validateMultipleAnswer = async (listAnswers) => {
   const urlListQuestion = `${process.env.QUESTION_SERVICE_URL}/lesson/${lessonId}`;
   const listQuestionRes = await axios.get(urlListQuestion);
   const listQuestions = listQuestionRes.data.data;
-  if (listQuestions.size !== listAnswers.size) {
+  console.log(listQuestions);
+  console.log(listAnswers);
+  console.log(listQuestions.length);
+  console.log(listAnswers.length);
+
+  if (listQuestions.length !== listAnswers.length) {
     return {
       status: false,
       EC: 1,
@@ -128,9 +136,11 @@ const validateMultipleAnswer = async (listAnswers) => {
       data: null,
     };
   }
-  const sortedQuestion = listQuestions.sort((a, b) => a._id - b._id);
-  const sortedAnswer = listAnswers.sort(
-    (a, b) => a.question_id - b.question_id
+  const sortedQuestion = listQuestions.sort((a, b) =>
+    a._id.localeCompare(b._id)
+  );
+  const sortedAnswer = listAnswers.sort((a, b) =>
+    a.question_id.localeCompare(b.question_id)
   );
 
   for (let i = 0; i < sortedQuestion.length; i++) {
@@ -142,11 +152,13 @@ const validateMultipleAnswer = async (listAnswers) => {
         data: null,
       };
     }
-    sortedAnswer[i].is_correct =
-      sortedQuestion[i].correct_answer_key === sortedAnswer[i].user_answer_key
-        ? true
-        : false;
-    sortedAnswer[i].score = sortedAnswer[i].is_correct === true ? 1 : 0;
+    if (sortedAnswer[i].question_type === "multiple_choice") {
+      sortedAnswer[i].is_correct =
+        sortedQuestion[i].correct_answer_key === sortedAnswer[i].user_answer_key
+          ? true
+          : false;
+      sortedAnswer[i].score = sortedAnswer[i].is_correct === true ? 1 : 0;
+    }
   }
 
   return {

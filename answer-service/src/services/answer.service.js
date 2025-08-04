@@ -127,9 +127,9 @@ const deleteMultipleAnswerByLessonId = async (id) => {
   }
 };
 
-const getAnswersByLessonId = async (id) => {
+const getAnswersByLessonId = async (id, userId) => {
   try {
-    const listAnswers = await Answer.find({ lesson_id: id });
+    const listAnswers = await Answer.find({ lesson_id: id, user_id: userId });
     if (listAnswers.length <= 0) {
       return {
         status: false,

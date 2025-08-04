@@ -36,6 +36,19 @@ const handleGeminiMark = async (req, res) => {
     const result = await axios.get(
       `${process.env.BASE_API_URL}/v1/api/product`
     );
+    if (result.status === 200) {
+      const listProducts = result.data.data;
+      const productInfo = listProducts
+        .map((p, i) => `${i + 1}. ${p.name} - ${p.price} VNĐ\n`)
+        .join("");
+      const fullPrompt = `Dưới đây là danh sách các sản phẩm hiện có trong cửa hàng:
+        ${productInfo}
+        `;
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Gemini API failed" });
   }
 };
-module.exports = {handleGeminiMark};
+
+module.exports = { handleGeminiMark };
