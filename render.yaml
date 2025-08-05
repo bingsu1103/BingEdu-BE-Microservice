@@ -3,6 +3,7 @@ version: 1
 services:
   - type: web
     name: user-service
+    runtime: node
     repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     branch: main
     envVars:
@@ -16,6 +17,7 @@ services:
 
   - type: web
     name: auth-service
+    runtime: node
     repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     branch: main
     envVars:
@@ -29,6 +31,7 @@ services:
 
   - type: web
     name: course-service
+    runtime: node
     repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     branch: main
     envVars:
@@ -42,6 +45,7 @@ services:
 
   - type: web
     name: upload-service
+    runtime: node
     repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     branch: main
     envVars:
@@ -55,6 +59,7 @@ services:
 
   - type: web
     name: lesson-service
+    runtime: node
     repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     branch: main
     envVars:
@@ -68,6 +73,7 @@ services:
 
   - type: web
     name: question-service
+    runtime: node
     repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     branch: main
     envVars:
@@ -81,6 +87,7 @@ services:
 
   - type: web
     name: answer-service
+    runtime: node
     repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     branch: main
     envVars:
@@ -94,6 +101,7 @@ services:
 
   - type: web
     name: review-service
+    runtime: node
     repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     branch: main
     envVars:
@@ -107,6 +115,7 @@ services:
 
   - type: web
     name: progress-service
+    runtime: node
     repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     branch: main
     envVars:
@@ -120,6 +129,7 @@ services:
 
   - type: web
     name: api-gateway
+    runtime: node
     repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     branch: main
     envVars:
