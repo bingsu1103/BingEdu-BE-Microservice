@@ -1,5 +1,5 @@
 const axios = require("axios");
-const validateReview = async (userID, lessonID) => {
+const validateReview = async (userID, courseID) => {
   const urlUser = `${process.env.USER_SERVICE_URL}/id/${userID}`;
   const userRes = await axios.get(urlUser);
   const user = userRes.data.data;
@@ -11,14 +11,14 @@ const validateReview = async (userID, lessonID) => {
       data: null,
     };
 
-  const urlLesson = `${process.env.LESSON_SERVICE_URL}/id/${lessonID}`;
-  const lessonRes = await axios.get(urlLesson);
-  const lesson = lessonRes.data.data;
-  if (!lesson) {
+  const urlCourse = `${process.env.COURSES_SERVICE_URL}/id/${courseID}`;
+  const courseRes = await axios.get(urlCourse);
+  const course = courseRes.data.data;
+  if (!course) {
     return {
       status: false,
       EC: 1,
-      message: "Lesson not found",
+      message: "Course not found",
       data: null,
     };
   }

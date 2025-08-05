@@ -7,7 +7,7 @@ const reviewSchema = new mongoose.Schema(
       required: true,
     },
     userName: String,
-    lessonID: {
+    courseID: {
       type: String,
       required: true,
     },

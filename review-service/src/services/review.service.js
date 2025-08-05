@@ -3,13 +3,13 @@ const validateReview = require("../utils/validateReview");
 
 const createReview = async (review) => {
   try {
-    const { userID, lessonID } = review;
-    const isValid = await validateReview(userID, lessonID);
+    const { userID, courseID } = review;
+    const isValid = await validateReview(userID, courseID);
     if (!isValid.status) {
       return {
         status: false,
         EC: 1,
-        message: "Data not valid (userID || lessonID)",
+        message: "Data not valid (userID || courseID)",
         data: null,
       };
     }
@@ -94,9 +94,9 @@ const deleteReview = async (id) => {
     };
   }
 };
-const getReview = async (lessonID) => {
+const getReview = async (coursesID) => {
   try {
-    const listReview = await Review.find({ lessonID: lessonID });
+    const listReview = await Review.find({ coursesID: coursesID });
     if (!Array.isArray(listReview) || listReview.length === 0) {
       return {
         status: false,
@@ -122,4 +122,37 @@ const getReview = async (lessonID) => {
   }
 };
 
-module.exports = { getReview, createReview, updateReview, deleteReview };
+// const getReviewByCourse = async (courseID) => {
+//   try {
+//     const listReview = await Review.find({ courseID: courseID });
+//     if (!listReview) {
+//       return {
+//         status: false,
+//         EC: 1,
+//         message: "Empty or not found review",
+//         data: null,
+//       };
+//     }
+//     return {
+//       status: true,
+//       EC: 0,
+//       message: "Success!",
+//       data: listReview,
+//     };
+//   } catch (error) {
+//     console.log(error);
+//     return {
+//       status: false,
+//       EC: -1,
+//       message: error.message || "ERROR FROM SERVER!",
+//       data: null,
+//     };
+//   }
+// };
+
+module.exports = {
+  getReview,
+  createReview,
+  updateReview,
+  deleteReview,
+};
