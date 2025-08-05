@@ -63,7 +63,7 @@ const updateReviewAPI = async (req, res) => {
 
 const deleteReviewAPI = async (req, res) => {
   try {
-    const id = req.body.id;
+    const id = req.params.id;
     if (!id) {
       return res.status(400).json({
         status: false,
