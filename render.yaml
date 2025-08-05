@@ -1,7 +1,5 @@
-# render.yaml
 version: 1
 
-# Repo và branch được khai báo một lần ở đầu
 source:
   type: git
   repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
@@ -11,7 +9,8 @@ services:
   - type: web
     name: user-service
     envVars:
-      PORT: 8000
+      - key: PORT
+        value: 8000
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
@@ -21,7 +20,8 @@ services:
   - type: web
     name: auth-service
     envVars:
-      PORT: 8001
+      - key: PORT
+        value: 8001
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
@@ -31,7 +31,8 @@ services:
   - type: web
     name: course-service
     envVars:
-      PORT: 8002
+      - key: PORT
+        value: 8002
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
@@ -41,7 +42,8 @@ services:
   - type: web
     name: upload-service
     envVars:
-      PORT: 8003
+      - key: PORT
+        value: 8003
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
@@ -51,7 +53,8 @@ services:
   - type: web
     name: lesson-service
     envVars:
-      PORT: 8004
+      - key: PORT
+        value: 8004
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
@@ -61,7 +64,8 @@ services:
   - type: web
     name: question-service
     envVars:
-      PORT: 8005
+      - key: PORT
+        value: 8005
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
@@ -71,7 +75,8 @@ services:
   - type: web
     name: answer-service
     envVars:
-      PORT: 8006
+      - key: PORT
+        value: 8006
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
@@ -81,7 +86,8 @@ services:
   - type: web
     name: review-service
     envVars:
-      PORT: 8007
+      - key: PORT
+        value: 8007
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
@@ -91,7 +97,8 @@ services:
   - type: web
     name: progress-service
     envVars:
-      PORT: 8008
+      - key: PORT
+        value: 8008
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
@@ -101,7 +108,8 @@ services:
   - type: web
     name: api-gateway
     envVars:
-      PORT: 8080
+      - key: PORT
+        value: 8080
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
