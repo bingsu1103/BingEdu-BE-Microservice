@@ -1,13 +1,10 @@
 version: 1
 
-source:
-  type: git
-  repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
-  branch: main
-
 services:
   - type: web
     name: user-service
+    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
+    branch: main
     envVars:
       - key: PORT
         value: 8000
@@ -19,6 +16,8 @@ services:
 
   - type: web
     name: auth-service
+    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
+    branch: main
     envVars:
       - key: PORT
         value: 8001
@@ -30,6 +29,8 @@ services:
 
   - type: web
     name: course-service
+    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
+    branch: main
     envVars:
       - key: PORT
         value: 8002
@@ -41,6 +42,8 @@ services:
 
   - type: web
     name: upload-service
+    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
+    branch: main
     envVars:
       - key: PORT
         value: 8003
@@ -52,6 +55,8 @@ services:
 
   - type: web
     name: lesson-service
+    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
+    branch: main
     envVars:
       - key: PORT
         value: 8004
@@ -63,6 +68,8 @@ services:
 
   - type: web
     name: question-service
+    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
+    branch: main
     envVars:
       - key: PORT
         value: 8005
@@ -74,6 +81,8 @@ services:
 
   - type: web
     name: answer-service
+    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
+    branch: main
     envVars:
       - key: PORT
         value: 8006
@@ -85,6 +94,8 @@ services:
 
   - type: web
     name: review-service
+    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
+    branch: main
     envVars:
       - key: PORT
         value: 8007
@@ -96,6 +107,8 @@ services:
 
   - type: web
     name: progress-service
+    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
+    branch: main
     envVars:
       - key: PORT
         value: 8008
@@ -107,6 +120,8 @@ services:
 
   - type: web
     name: api-gateway
+    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
+    branch: main
     envVars:
       - key: PORT
         value: 8080
