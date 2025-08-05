@@ -32,14 +32,14 @@ const updateCourseProgressAPI = async (req, res) => {
       coursesId
     );
     if (!coursesProgress.status) {
-      return res.status(400).json({
+      return res.status(200).json({
         status: false,
         EC: -1,
         message: "Update courses progress failed",
         data: null,
       });
     }
-    return res.status(500).json(coursesProgress);
+    return res.status(200).json(coursesProgress);
   } catch (error) {
     return res.status(500).json({
       status: false,
@@ -51,7 +51,7 @@ const updateCourseProgressAPI = async (req, res) => {
 };
 const getCoursesProgressAPI = async (req, res) => {
   try {
-    const { userId, coursesId } = req.body;
+    const { userId, coursesId } = req.params;
     if (!coursesId || !userId) {
       return res.status(400).json({
         status: false,
@@ -65,7 +65,7 @@ const getCoursesProgressAPI = async (req, res) => {
       userId
     );
     if (!courseProgress.status) {
-      return res.status(500).json(courseProgress);
+      return res.status(200).json(courseProgress);
     }
     return res.status(200).json(courseProgress);
   } catch (error) {

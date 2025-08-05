@@ -6,7 +6,7 @@ const createLessonProgressAPI = async (req, res) => {
       req.body
     );
     if (!lessonProgress.status) {
-      return res.status(401).json({
+      return res.status(400).json({
         status: false,
         EC: 1,
         message: lessonProgress.message,
@@ -32,7 +32,7 @@ const getLessonProgressAPI = async (req, res) => {
       lessonId
     );
     if (!lessonProgress.status) {
-      return res.status(401).json({
+      return res.status(400).json({
         status: false,
         EC: 1,
         message: lessonProgress.message,

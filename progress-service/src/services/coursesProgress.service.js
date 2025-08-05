@@ -3,7 +3,10 @@ const axios = require("axios");
 
 const createCourseProgress = async (data) => {
   try {
-    const coursesProgress = await CoursesProgress.create(data);
+    const coursesProgress = await CoursesProgress.create({
+      ...data,
+      lessonsIdComplete: data.lessonId,
+    });
     if (!coursesProgress) {
       return {
         status: false,

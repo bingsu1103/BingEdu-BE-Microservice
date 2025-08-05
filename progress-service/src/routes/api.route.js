@@ -5,7 +5,10 @@ const lessonProgressController = require("../controllers/lessonProgress.controll
 
 routerAPI.post("/courses", courseProgressController.createCourseProgressAPI);
 routerAPI.put("/courses", courseProgressController.updateCourseProgressAPI);
-routerAPI.get("/courses", courseProgressController.getCoursesProgressAPI);
+routerAPI.get(
+  "/courses/userId/:userId/coursesId/:coursesId",
+  courseProgressController.getCoursesProgressAPI
+);
 routerAPI.post("/lessons", lessonProgressController.createLessonProgressAPI);
 routerAPI.get(
   "/lessons/userId/:userId/lessonId/:lessonId",

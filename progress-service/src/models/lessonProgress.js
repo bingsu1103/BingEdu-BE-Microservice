@@ -10,7 +10,10 @@ const lessonProgressSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    completed: Boolean,
+    completed: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: true,

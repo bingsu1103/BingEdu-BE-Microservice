@@ -122,10 +122,6 @@ const validateMultipleAnswer = async (listAnswers) => {
   const urlListQuestion = `${process.env.QUESTION_SERVICE_URL}/lesson/${lessonId}`;
   const listQuestionRes = await axios.get(urlListQuestion);
   const listQuestions = listQuestionRes.data.data;
-  console.log(listQuestions);
-  console.log(listAnswers);
-  console.log(listQuestions.length);
-  console.log(listAnswers.length);
 
   if (listQuestions.length !== listAnswers.length) {
     return {
