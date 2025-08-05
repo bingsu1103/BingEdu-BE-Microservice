@@ -1,130 +1,109 @@
+# render.yaml
+version: 1
+
+# Repo và branch được khai báo một lần ở đầu
+source:
+  type: git
+  repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
+  branch: main
+
 services:
   - type: web
     name: user-service
-    env:
-      - key: PORT
-        value: "8000"
+    envVars:
+      PORT: 8000
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
-    branch: main
     healthCheckPath: /
-    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     rootDir: user-service
 
   - type: web
     name: auth-service
-    env:
-      - key: PORT
-        value: "8001"
+    envVars:
+      PORT: 8001
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
-    branch: main
     healthCheckPath: /
-    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     rootDir: auth-service
 
   - type: web
     name: course-service
-    env:
-      - key: PORT
-        value: "8002"
+    envVars:
+      PORT: 8002
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
-    branch: main
     healthCheckPath: /
-    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     rootDir: course-service
 
   - type: web
     name: upload-service
-    env:
-      - key: PORT
-        value: "8003"
+    envVars:
+      PORT: 8003
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
-    branch: main
     healthCheckPath: /
-    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     rootDir: upload-service
 
   - type: web
     name: lesson-service
-    env:
-      - key: PORT
-        value: "8004"
+    envVars:
+      PORT: 8004
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
-    branch: main
     healthCheckPath: /
-    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     rootDir: lesson-service
 
   - type: web
     name: question-service
-    env:
-      - key: PORT
-        value: "8005"
+    envVars:
+      PORT: 8005
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
-    branch: main
     healthCheckPath: /
-    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     rootDir: question-service
 
   - type: web
     name: answer-service
-    env:
-      - key: PORT
-        value: "8006"
+    envVars:
+      PORT: 8006
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
-    branch: main
     healthCheckPath: /
-    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     rootDir: answer-service
 
   - type: web
     name: review-service
-    env:
-      - key: PORT
-        value: "8007"
+    envVars:
+      PORT: 8007
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
-    branch: main
     healthCheckPath: /
-    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     rootDir: review-service
 
   - type: web
     name: progress-service
-    env:
-      - key: PORT
-        value: "8008"
+    envVars:
+      PORT: 8008
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
-    branch: main
     healthCheckPath: /
-    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     rootDir: progress-service
 
   - type: web
     name: api-gateway
-    env:
-      - key: PORT
-        value: "8080"
+    envVars:
+      PORT: 8080
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
-    branch: main
     healthCheckPath: /
-    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
     rootDir: api-gateway
