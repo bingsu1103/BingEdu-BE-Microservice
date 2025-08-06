@@ -1,0 +1,159 @@
+version: 1
+
+services:
+  - type: web
+    name: bingedu-server
+    runtime: node
+    repo: https://github.com/bingsu1103/BingEdu-BE-Microservice
+    branch: main
+    envVars:
+      - key: PORT
+        value: 8080
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    healthCheckPath: /
+    rootDir: api-gateway
+
+  - type: web
+    name: user-service
+    env:
+      - key: PORT
+        value: "8000"
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    branch: main
+    healthCheckPath: /
+    repo: https://github.com/ngogiaan1103/BingEdu
+    rootDir: user-service
+
+  - type: web
+    name: auth-service
+    env:
+      - key: PORT
+        value: "8001"
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    branch: main
+    healthCheckPath: /
+    repo: https://github.com/ngogiaan1103/BingEdu
+    rootDir: auth-service
+
+  - type: web
+    name: course-service
+    env:
+      - key: PORT
+        value: "8002"
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    branch: main
+    healthCheckPath: /
+    repo: https://github.com/ngogiaan1103/BingEdu
+    rootDir: course-service
+
+  - type: web
+    name: upload-service
+    env:
+      - key: PORT
+        value: "8003"
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    branch: main
+    healthCheckPath: /
+    repo: https://github.com/ngogiaan1103/BingEdu
+    rootDir: upload-service
+
+  - type: web
+    name: lesson-service
+    env:
+      - key: PORT
+        value: "8004"
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    branch: main
+    healthCheckPath: /
+    repo: https://github.com/ngogiaan1103/BingEdu
+    rootDir: lesson-service
+
+  - type: web
+    name: question-service
+    env:
+      - key: PORT
+        value: "8005"
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    branch: main
+    healthCheckPath: /
+    repo: https://github.com/ngogiaan1103/BingEdu
+    rootDir: question-service
+
+  - type: web
+    name: answer-service
+    env:
+      - key: PORT
+        value: "8006"
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    branch: main
+    healthCheckPath: /
+    repo: https://github.com/ngogiaan1103/BingEdu
+    rootDir: answer-service
+
+  - type: web
+    name: review-service
+    env:
+      - key: PORT
+        value: "8007"
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    branch: main
+    healthCheckPath: /
+    repo: https://github.com/ngogiaan1103/BingEdu
+    rootDir: review-service
+
+  - type: web
+    name: progress-service
+    env:
+      - key: PORT
+        value: "8008"
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    branch: main
+    healthCheckPath: /
+    repo: https://github.com/ngogiaan1103/BingEdu
+    rootDir: progress-service
+
+  - type: web
+    name: ai-service
+    env:
+      - key: PORT
+        value: "8010"
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    branch: main
+    healthCheckPath: /
+    repo: https://github.com/ngogiaan1103/BingEdu
+    rootDir: ai-service
+
+  - type: web
+    name: submission-service
+    env:
+      - key: PORT
+        value: "8009"
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    branch: main
+    healthCheckPath: /
+    repo: https://github.com/ngogiaan1103/BingEdu
+    rootDir: submission-service

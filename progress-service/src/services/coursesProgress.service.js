@@ -103,8 +103,38 @@ const getCoursesProgress = async (coursesId, userId) => {
     };
   }
 };
+const getAllCoursesProgressByUser = async (userId) => {
+  try {
+    const coursesProgress = await CoursesProgress.find({
+      userId: userId,
+    });
+    if (!coursesProgress) {
+      return {
+        status: false,
+        EC: 1,
+        message: "not founded courses",
+        data: null,
+      };
+    }
+    return {
+      status: true,
+      EC: 0,
+      message: "get courses progress successfully!",
+      data: coursesProgress,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      status: false,
+      EC: -1,
+      message: error.message || "ERROR FROM SERVER!",
+      data: null,
+    };
+  }
+};
 module.exports = {
   createCourseProgress,
   updateCourseProgress,
   getCoursesProgress,
+  getAllCoursesProgressByUser,
 };

@@ -115,35 +115,27 @@ const getReviewAPI = async (req, res) => {
     });
   }
 };
-// const getReviewByCourseAPI = async (req, res) => {
-//   try {
-//     const { courseID } = req.body;
-//     if (!courseID) {
-//       res.status(400).json({
-//         status: false,
-//         EC: 1,
-//         message: "Missing courseID",
-//         data: null,
-//       });
-//     }
-//     const result = await reviewService.getReviewByCourse(courseID);
-//     if (!result.status) {
-//       return res.status(400).json(result);
-//     }
-//     return res.status(200).json(result);
-//   } catch (error) {
-//     return res.status(500).json({
-//       status: false,
-//       EC: 0,
-//       message: error.message || "ERROR FROM SERVER!",
-//       data: null,
-//     });
-//   }
-// };
+const getAllReviewsAPI = async (req, res) => {
+  try {
+    const result = await reviewService.getAllReviews();
+    if (!result.status) {
+      return res.status(400).json(result);
+    }
+    return res.status(200).json(result);
+  } catch (error) {
+    return res.status(500).json({
+      status: false,
+      EC: 0,
+      message: error.message || "ERROR FROM SERVER!",
+      data: null,
+    });
+  }
+};
 
 module.exports = {
   getReviewAPI,
   createReviewAPI,
   updateReviewAPI,
   deleteReviewAPI,
+  getAllReviewsAPI,
 };

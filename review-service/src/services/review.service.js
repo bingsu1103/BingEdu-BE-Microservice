@@ -94,9 +94,9 @@ const deleteReview = async (id) => {
     };
   }
 };
-const getReview = async (coursesID) => {
+const getReview = async (id) => {
   try {
-    const listReview = await Review.find({ coursesID: coursesID });
+    const listReview = await Review.find({ courseID: id });
     if (!Array.isArray(listReview) || listReview.length === 0) {
       return {
         status: false,
@@ -122,37 +122,38 @@ const getReview = async (coursesID) => {
   }
 };
 
-// const getReviewByCourse = async (courseID) => {
-//   try {
-//     const listReview = await Review.find({ courseID: courseID });
-//     if (!listReview) {
-//       return {
-//         status: false,
-//         EC: 1,
-//         message: "Empty or not found review",
-//         data: null,
-//       };
-//     }
-//     return {
-//       status: true,
-//       EC: 0,
-//       message: "Success!",
-//       data: listReview,
-//     };
-//   } catch (error) {
-//     console.log(error);
-//     return {
-//       status: false,
-//       EC: -1,
-//       message: error.message || "ERROR FROM SERVER!",
-//       data: null,
-//     };
-//   }
-// };
+const getAllReviews = async () => {
+  try {
+    const listReview = await Review.find({});
+    if (!listReview) {
+      return {
+        status: false,
+        EC: 1,
+        message: "Empty or not found review",
+        data: null,
+      };
+    }
+    return {
+      status: true,
+      EC: 0,
+      message: "Success!",
+      data: listReview,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      status: false,
+      EC: -1,
+      message: error.message || "ERROR FROM SERVER!",
+      data: null,
+    };
+  }
+};
 
 module.exports = {
   getReview,
   createReview,
   updateReview,
   deleteReview,
+  getAllReviews,
 };

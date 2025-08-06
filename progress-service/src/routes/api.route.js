@@ -9,6 +9,10 @@ routerAPI.get(
   "/courses/userId/:userId/coursesId/:coursesId",
   courseProgressController.getCoursesProgressAPI
 );
+routerAPI.get(
+  "/courses/userId/:userId",
+  courseProgressController.getAllCoursesProgressByUserAPI
+);
 routerAPI.post("/lessons", lessonProgressController.createLessonProgressAPI);
 routerAPI.get(
   "/lessons/userId/:userId/lessonId/:lessonId",

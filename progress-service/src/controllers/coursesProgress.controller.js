@@ -77,8 +77,35 @@ const getCoursesProgressAPI = async (req, res) => {
     });
   }
 };
+const getAllCoursesProgressByUserAPI = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    if (!userId) {
+      return res.status(400).json({
+        status: false,
+        EC: 1,
+        message: "Missing userId",
+        data: null,
+      });
+    }
+    const courseProgress =
+      await coursesProgressService.getAllCoursesProgressByUser(userId);
+    if (!courseProgress.status) {
+      return res.status(200).json(courseProgress);
+    }
+    return res.status(200).json(courseProgress);
+  } catch (error) {
+    return res.status(500).json({
+      status: false,
+      EC: 0,
+      message: error.message || "ERROR FROM SERVER!",
+      data: null,
+    });
+  }
+};
 module.exports = {
   createCourseProgressAPI,
   getCoursesProgressAPI,
   updateCourseProgressAPI,
+  getAllCoursesProgressByUserAPI,
 };
