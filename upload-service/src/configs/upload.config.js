@@ -8,20 +8,50 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET_KEY,
 });
 
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
+// 🔸 Cấu hình lưu ảnh
+const avatarStorage = new CloudinaryStorage({
+  cloudinary,
   params: {
-    folder: "bingeduimg/courses/thumbnail",
+    folder: "bingeduimg/avatar",
+    allowed_formats: ["jpg", "jpeg", "png", "gif", "webp", "avif"],
+    transformation: [{ width: 600, height: 600, crop: "limit" }],
+  },
+});
+const imageQuestionStorage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "bingeduimg/question",
     allowed_formats: ["jpg", "jpeg", "png", "gif", "webp", "avif"],
     transformation: [{ width: 600, height: 600, crop: "limit" }],
   },
 });
 
-const upload = multer({
-  storage: storage,
-  limits: {
-    fileSize: 1024 * 1024 * 2,
+const audioStorage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "bingeduimg/audio",
+    allowed_formats: ["mp3", "wav", "ogg", "m4a"],
+    resource_type: "video",
   },
 });
 
-module.exports = upload;
+const uploadAvatar = multer({
+  storage: avatarStorage,
+  limits: { fileSize: 1024 * 1024 * 2 },
+});
+
+const uploadImgQuestion = multer({
+  storage: imageQuestionStorage,
+  limits: { fileSize: 1024 * 1024 * 2 },
+});
+
+const uploadAudio = multer({
+  storage: audioStorage,
+  limits: { fileSize: 1024 * 1024 * 10 },
+});
+
+module.exports = {
+  uploadAvatar,
+  uploadImgQuestion,
+  uploadAudio,
+};

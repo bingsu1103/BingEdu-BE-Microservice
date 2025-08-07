@@ -6,9 +6,22 @@ const upload = require("../configs/upload.config");
 
 routerAPI.post(
   "/upload-img",
-  upload.single("image"),
+  upload.uploadImgQuestion.single("image"),
   uploadController.uploadImgAPI,
   handleUploadError
+);
+routerAPI.post(
+  "/upload-avatar",
+  upload.uploadAvatar.single("image"),
+  uploadController.uploadImgAPI,
+  handleUploadError
+);
+
+routerAPI.post(
+  "/upload-audio",
+  upload.uploadAudio.single("audio"),
+  handleUploadError,
+  uploadController.uploadAudioAPI
 );
 
 module.exports = routerAPI;
