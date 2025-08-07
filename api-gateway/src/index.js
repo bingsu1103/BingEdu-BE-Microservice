@@ -10,6 +10,7 @@ const uploadRoutes = require("./routes/upload");
 const reviewRoutes = require("./routes/review");
 const progressRoutes = require("./routes/progress");
 const submissionRoutes = require("./routes/submission");
+const aiRoutes = require("./routes/ai");
 const errorHandler = require("./middlewares/errorHandler");
 const cors = require("cors");
 
@@ -46,6 +47,7 @@ app.use("/v1/api/upload", uploadRoutes);
 app.use("/v1/api/review", reviewRoutes);
 app.use("/v1/api/progress", progressRoutes);
 app.use("/v1/api/submission", submissionRoutes);
+app.use("/v1/api/ai", aiRoutes);
 
 app.use(errorHandler);
 

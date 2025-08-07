@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const handleGeminiRequest = require("../controllers/geminiController");
+const aiController = require("../controllers/ai.controller");
 
-router.post("/ask", handleGeminiRequest);
-router.post("/mark", handleGeminiMark);
+router.post("/mark", aiController.handleGeminiMark);
 
 module.exports = router;

@@ -8,7 +8,7 @@ router.use(
   createProxyMiddleware({
     target: "http://ai-service:8010",
     changeOrigin: true,
-    pathRewrite: { "^/v1/api/ask": "" },
+    pathRewrite: { "^/v1/api/ai": "" },
   })
 );
 

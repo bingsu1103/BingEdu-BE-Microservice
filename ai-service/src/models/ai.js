@@ -1,4 +1,4 @@
-const genAI = require("../configs/geminiConfig");
+const genAI = require("../configs/DB.config");
 
 const generateText = async (prompt) => {
   const result = await genAI.models.generateContent({
