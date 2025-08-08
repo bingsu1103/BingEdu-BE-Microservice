@@ -138,7 +138,7 @@ const getAllQuestionAPI = async (req, res) => {
   }
 };
 
-const getQuestionByLessonId = async (req, res) => {
+const getQuestionByLessonIdAPI = async (req, res) => {
   try {
     const id = req.params.id;
     if (!id) {
@@ -150,6 +150,37 @@ const getQuestionByLessonId = async (req, res) => {
       });
     }
     const result = await questionService.getQuestionByLessonId(id);
+    if (!result) {
+      return res.status(500).json({
+        status: false,
+        EC: 1,
+        message: "Get list question failed",
+        data: null,
+      });
+    }
+    return res.status(200).json(result);
+  } catch (error) {
+    return res.status(500).json({
+      status: false,
+      EC: -1,
+      message: error.message || "ERROR FROM SERVER!",
+      data: null,
+    });
+  }
+};
+
+const getQuestionByLessonIdWithAnswerAPI = async () => {
+  try {
+    const id = req.params.id;
+    if (!id) {
+      return res.status(400).json({
+        status: false,
+        EC: 1,
+        message: "Missing lesson id",
+        data: null,
+      });
+    }
+    const result = await questionService.getQuestionByLessonIdWithAnswer(id);
     if (!result) {
       return res.status(500).json({
         status: false,
@@ -207,5 +238,6 @@ module.exports = {
   getQuestionAPI,
   getAllQuestionAPI,
   deleteQuestionAPI,
-  getQuestionByLessonId,
+  getQuestionByLessonIdAPI,
+  getQuestionByLessonIdWithAnswerAPI,
 };

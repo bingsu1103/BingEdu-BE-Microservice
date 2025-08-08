@@ -199,6 +199,46 @@ const getQuestionByLessonId = async (id) => {
         data: null,
       };
     }
+    const listQuestion = await Question.find({ "lesson.id": id }).select(
+      "-correct_answer_key -explanation"
+    );
+    if (!listQuestion) {
+      return {
+        status: false,
+        EC: 1,
+        message: "Lesson maybe empty",
+        data: null,
+      };
+    }
+    return {
+      status: true,
+      EC: 0,
+      message: "Get question by id successfully!",
+      data: listQuestion,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      status: false,
+      EC: -1,
+      message: error.message || "ERROR FROM SERVER!",
+      data: null,
+    };
+  }
+};
+
+const getQuestionByLessonIdWithAnswer = async (id) => {
+  try {
+    const url = `${process.env.LESSON_SERVICE_URL}/id/${id}`;
+    const lesson = await axios.get(url);
+    if (!lesson.data.status) {
+      return {
+        status: false,
+        EC: 1,
+        message: "Lesson not exits in system",
+        data: null,
+      };
+    }
     const listQuestion = await Question.find({ "lesson.id": id });
     if (!listQuestion) {
       return {
@@ -260,4 +300,5 @@ module.exports = {
   getQuestion,
   getQuestionByLessonId,
   deleteQuestion,
+  getQuestionByLessonIdWithAnswer,
 };
