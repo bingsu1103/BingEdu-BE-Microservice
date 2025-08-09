@@ -124,6 +124,38 @@ const getAllPaymentsAPI = async (req, res) => {
   }
 };
 
+const getPaymentWithPaginationAPI = async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const search = req.query.search || "";
+
+    if (!page || !limit) {
+      return res.status(400).json({
+        status: false,
+        EC: -2,
+        message: "Missing required query params: page or limit",
+        data: null,
+      });
+    }
+
+    const result = await paymentService.getPaymentWithPagination({
+      page: parseInt(page),
+      limit: parseInt(limit),
+      search,
+    });
+
+    return res.status(200).json(result);
+  } catch (error) {
+    return res.status(500).json({
+      status: false,
+      EC: -1,
+      message: error.message || "Pagination failed",
+      data: null,
+    });
+  }
+};
+
 module.exports = {
   createPaymentAPI,
   updatePaymentAPI,
@@ -131,4 +163,5 @@ module.exports = {
   deletePaymentAPI,
   getAllPaymentsAPI,
   getPaymentByUserIdAPI,
+  getPaymentWithPaginationAPI,
 };

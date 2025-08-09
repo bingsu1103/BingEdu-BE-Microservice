@@ -130,6 +130,47 @@ const getAllPayments = async () => {
   }
 };
 
+const getPaymentWithPagination = async ({ page, limit, search }) => {
+  try {
+    const skip = (page - 1) * limit;
+
+    const query = search
+      ? {
+          $or: [
+            { userId: { $regex: search, $options: "i" } },
+            { courseId: { $regex: search, $options: "i" } },
+            { method: { $regex: search, $options: "i" } },
+            { status: { $regex: search, $options: "i" } },
+          ],
+        }
+      : {};
+
+    const [payments, total] = await Promise.all([
+      Payment.find(query).skip(skip).limit(limit).sort({ createdAt: -1 }),
+      Payment.countDocuments(query),
+    ]);
+
+    return {
+      status: true,
+      EC: 0,
+      message: "Fetched payments with pagination",
+      data: {
+        payments,
+        total,
+        page,
+        limit,
+      },
+    };
+  } catch (error) {
+    return {
+      status: false,
+      EC: -1,
+      message: error.message || "Failed to paginate payments",
+      data: null,
+    };
+  }
+};
+
 module.exports = {
   createPayment,
   updatePayment,
@@ -137,4 +178,5 @@ module.exports = {
   deletePayment,
   getAllPayments,
   getPaymentByUserId,
+  getPaymentWithPagination,
 };
