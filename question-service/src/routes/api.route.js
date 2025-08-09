@@ -10,7 +10,7 @@ routerAPI.get("/", questionController.getAllQuestionAPI);
 routerAPI.get("/lesson/:id", questionController.getQuestionByLessonIdAPI);
 routerAPI.get(
   "/lesson/answer/:id",
-  questionController.getQuestionByLessonIdAPI
+  questionController.getQuestionByLessonIdWithAnswerAPI
 );
 routerAPI.delete("/id/:id", questionController.deleteQuestionAPI);
 

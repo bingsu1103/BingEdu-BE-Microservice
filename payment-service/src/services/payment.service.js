@@ -65,6 +65,33 @@ const getPayment = async (id) => {
   }
 };
 
+const getPaymentByUserId = async (id) => {
+  try {
+    const payment = await Payment.find({ userId: id });
+    if (!payment) {
+      return {
+        status: false,
+        EC: 1,
+        message: "Payment not exists in system",
+        data: null,
+      };
+    }
+    return {
+      status: true,
+      EC: 0,
+      message: "Get list payment successfully!",
+      data: payment,
+    };
+  } catch (error) {
+    return {
+      status: false,
+      EC: -1,
+      message: error.message || "Get payment failed (SERVER)!",
+      data: null,
+    };
+  }
+};
+
 const deletePayment = async (id) => {
   try {
     const result = await Payment.deleteOne({ _id: id });
@@ -109,4 +136,5 @@ module.exports = {
   getPayment,
   deletePayment,
   getAllPayments,
+  getPaymentByUserId,
 };

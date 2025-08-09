@@ -119,7 +119,7 @@ const validateMultipleAnswer = async (listAnswers) => {
       };
     }
   }
-  const urlListQuestion = `${process.env.QUESTION_SERVICE_URL}/lesson/${lessonId}`;
+  const urlListQuestion = `${process.env.QUESTION_SERVICE_URL}/lesson/answer/${lessonId}`;
   const listQuestionRes = await axios.get(urlListQuestion);
   const listQuestions = listQuestionRes.data.data;
 

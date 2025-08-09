@@ -7,6 +7,12 @@ const createCourseProgress = async (data) => {
       ...data,
       lessonsIdComplete: data.lessonId,
     });
+    const listCoursesRes = await axios.get(
+      `${process.env.COURSES_SERVICE_URL}/multiple`
+    );
+    const listCoursesLength = listCoursesRes.data.data.length;
+    coursesProgress.progress = 1 / listCoursesLength;
+    await coursesProgress.save();
     if (!coursesProgress) {
       return {
         status: false,
@@ -56,6 +62,8 @@ const updateCourseProgress = async (userId, lessonId, coursesId) => {
       courses.completed = true;
       await courses.save();
     }
+    courses.progress = courses.lessonsIdComplete.length / listCoursesLength;
+    await courses.save();
     return {
       status: true,
       EC: 0,

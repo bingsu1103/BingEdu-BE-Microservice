@@ -64,6 +64,29 @@ const getPaymentAPI = async (req, res) => {
   }
 };
 
+const getPaymentByUserIdAPI = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!id) {
+      return res.status(400).json({
+        status: false,
+        EC: 1,
+        message: "Missing id",
+        data: null,
+      });
+    }
+    const result = await paymentService.getPaymentByUserId(id);
+    return res.status(result.status ? 200 : 500).json(result);
+  } catch (error) {
+    return res.status(500).json({
+      status: false,
+      EC: -1,
+      message: error.message || "Error from server!",
+      data: null,
+    });
+  }
+};
+
 const deletePaymentAPI = async (req, res) => {
   try {
     const id = req.params.id;
@@ -107,4 +130,5 @@ module.exports = {
   getPaymentAPI,
   deletePaymentAPI,
   getAllPaymentsAPI,
+  getPaymentByUserIdAPI,
 };

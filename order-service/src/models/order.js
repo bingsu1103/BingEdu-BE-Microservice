@@ -6,24 +6,14 @@ const orderSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    courseIds: {
-      type: [String],
+    courseId: {
+      type: String,
       required: true,
-      validate: {
-        validator: function (v) {
-          return Array.isArray(v) && v.length > 0;
-        },
-        message: "courseIds must be a non-empty array",
-      },
     },
     total: {
       type: Number,
       required: true,
       min: 0,
-    },
-    timestamp: {
-      type: Date,
-      default: Date.now,
     },
   },
   { timestamps: true }

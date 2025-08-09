@@ -169,7 +169,7 @@ const getQuestionByLessonIdAPI = async (req, res) => {
   }
 };
 
-const getQuestionByLessonIdWithAnswerAPI = async () => {
+const getQuestionByLessonIdWithAnswerAPI = async (req, res) => {
   try {
     const id = req.params.id;
     if (!id) {

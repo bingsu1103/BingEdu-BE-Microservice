@@ -17,6 +17,7 @@ const errorHandler = require("./middlewares/errorHandler");
 const cors = require("cors");
 
 const app = express();
+
 app.use(
   cors({
     origin: process.env.FRONTEND_URL || "http://localhost:5173",
@@ -56,6 +57,8 @@ app.use("/v1/api/payment", paymentRoutes);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`API Gateway is running on port ${PORT}`);
 });
+
+server.setMaxListeners(20);

@@ -103,10 +103,38 @@ const getAllOrders = async () => {
   }
 };
 
+const getOrderByUserId = async (id) => {
+  try {
+    const order = await Order.find({ userId: id });
+    if (!order) {
+      return {
+        status: false,
+        EC: 1,
+        message: "List order of user not exists in system",
+        data: null,
+      };
+    }
+    return {
+      status: true,
+      EC: 0,
+      message: "Get order successfully!",
+      data: order,
+    };
+  } catch (error) {
+    return {
+      status: false,
+      EC: -1,
+      message: error.message || "Get order failed (SERVER)!",
+      data: null,
+    };
+  }
+};
+
 module.exports = {
   createOrder,
   updateOrder,
   getOrder,
   deleteOrder,
   getAllOrders,
+  getOrderByUserId,
 };

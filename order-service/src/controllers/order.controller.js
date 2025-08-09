@@ -101,10 +101,34 @@ const getAllOrdersAPI = async (req, res) => {
   }
 };
 
+const getOrderByUserIdAPI = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!id) {
+      return res.status(400).json({
+        status: false,
+        EC: 1,
+        message: "Missing id",
+        data: null,
+      });
+    }
+    const result = await orderService.getOrderByUserId(id);
+    return res.status(result.status ? 200 : 500).json(result);
+  } catch (error) {
+    return res.status(500).json({
+      status: false,
+      EC: -1,
+      message: error.message || "Error from server!",
+      data: null,
+    });
+  }
+};
+
 module.exports = {
   createOrderAPI,
   updateOrderAPI,
   getOrderAPI,
   deleteOrderAPI,
   getAllOrdersAPI,
+  getOrderByUserIdAPI,
 };
