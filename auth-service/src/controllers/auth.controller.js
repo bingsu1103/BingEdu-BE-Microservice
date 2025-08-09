@@ -44,6 +44,8 @@ const loginAPI = async (req, res) => {
 
     const result = await authService.login(email, password);
 
+    console.log(result);
+
     if (!result.status) {
       return res.status(200).json({
         status: false,
