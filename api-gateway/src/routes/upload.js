@@ -6,7 +6,7 @@ const router = Router();
 router.use(
   "/",
   createProxyMiddleware({
-    target: "http://upload-service:8003",
+    target: "https://bingedu-be-microservice-upload-service.onrender.com",
     changeOrigin: true,
     pathRewrite: { "^/v1/api/upload": "" },
   })

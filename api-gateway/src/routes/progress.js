@@ -6,7 +6,7 @@ const router = Router();
 router.use(
   "/",
   createProxyMiddleware({
-    target: "http://progress-service:8008",
+    target: "https://bingedu-be-microservice-progress-service.onrender.com",
     changeOrigin: true,
     pathRewrite: { "^/v1/api/progress": "" },
   })

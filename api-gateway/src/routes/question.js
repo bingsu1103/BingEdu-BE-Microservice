@@ -6,7 +6,7 @@ const router = Router();
 router.use(
   "/",
   createProxyMiddleware({
-    target: "http://question-service:8005",
+    target: "https://bingedu-be-microservice-question-service.onrender.com",
     changeOrigin: true,
     pathRewrite: { "^/v1/api/questions": "" },
   })

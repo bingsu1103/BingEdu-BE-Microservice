@@ -6,7 +6,7 @@ const router = Router();
 router.use(
   "/",
   createProxyMiddleware({
-    target: "http://submission-service:8009",
+    target: "https://bingedu-be-microservice-submission-service.onrender.com",
     changeOrigin: true,
     pathRewrite: { "^/v1/api/submission": "" },
   })

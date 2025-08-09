@@ -6,7 +6,7 @@ const router = Router();
 router.use(
   "/",
   createProxyMiddleware({
-    target: "http://ai-service:8010",
+    target: "https://bingedu-be-microservice-ai-service.onrender.com",
     changeOrigin: true,
     pathRewrite: { "^/v1/api/ai": "" },
   })
