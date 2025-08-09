@@ -55,7 +55,11 @@ const login = async (email, password) => {
   try {
     const passCheckUrl = `${process.env.USER_SERVICE_URL}/check-password`;
     const data = { email, password };
-    const checkPassResponse = await axios.post(passCheckUrl, data);
+    const checkPassResponse = await axios.post(passCheckUrl, data, {
+      headers: {
+        "x-api-key": process.env.INTERNAL_API_KEY,
+      },
+    });
 
     const dataRes = checkPassResponse.data;
     if (!dataRes.status) {

@@ -8,7 +8,7 @@ router.use(
   createProxyMiddleware({
     target: "https://bingedu-be-microservice-user-service.onrender.com",
     changeOrigin: true,
-    pathRewrite: { "^/v1/api/users": "" },
+    pathRewrite: { "^/v1/api/user": "" },
   })
 );
 
