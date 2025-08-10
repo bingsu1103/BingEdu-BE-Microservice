@@ -50,7 +50,7 @@ const loginAPI = async (req, res) => {
       return res.status(200).json({
         status: false,
         EC: result.EC || 2,
-        message: result || "Unauthorized",
+        message: result.message || "Unauthorized",
         data: null,
       });
     }
