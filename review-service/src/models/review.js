@@ -11,6 +11,7 @@ const reviewSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    avatar: String,
     rating: {
       type: Number,
       enum: [1, 2, 3, 4, 5],
