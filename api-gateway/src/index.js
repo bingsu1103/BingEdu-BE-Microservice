@@ -20,10 +20,7 @@ const app = express();
 
 app.use(
   cors({
-    origin:
-      process.env.FRONTEND_URL ||
-      "https://bingedu.vercel.app" ||
-      "http://localhost:5173",
+    origin: process.env.FRONTEND_URL || "https://bingedu.vercel.app",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: [
