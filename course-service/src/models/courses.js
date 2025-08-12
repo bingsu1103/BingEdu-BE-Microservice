@@ -14,6 +14,9 @@ const coursesSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  banner: {
+    type: String,
+  },
   type: {
     type: String,
     enum: ["listening", "reading", "grammar", "writing", "mixed"],
